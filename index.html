@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blush: #f8d7da;
+            --deep-rose: #d4a5a5;
+            --gold: #c5a059;
+            --white: #ffffff;
+            --soft-gray: #f9f9f9;
+            --text: #4a4a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-gray);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        /* --- Layout --- */
+        section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            transition: opacity 1s ease;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* --- Entrance Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Section 1: Landing --- */
+        #landing {
+            background: linear-gradient(135deg, #fff 0%, var(--blush) 100%);
+        }
+
+        .motto {
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background-color: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: var(--gold);
+            color: white;
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+        }
+
+        /* --- Section 2: Proposal --- */
+        #proposal {
+            background-color: white;
+            display: none; /* Controlled by JS */
+        }
+
+        .proposal-text {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-yes {
+            background-color: var(--deep-rose);
+            color: white;
+        }
+
+        .btn-maybe {
+            background-color: var(--blush);
+            color: var(--text);
+        }
+
+        .option-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Form Hidden --- */
+        #hidden-form {
+            display: none;
+        }
+
+        /* --- Success Message --- */
+        #success-screen {
+            display: none;
+            background: var(--white);
+        }
+
+        .success-icon {
+            color: var(--gold);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Floating Elements --- */
+        .floating-heart {
+            position: fixed;
+            color: var(--deep-rose);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @media (max-width: 480px) {
+            .main-title { font-size: 2.5rem; }
+            .proposal-text { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-heart" style="top: 10%; left: 10%;">❤</div>
+    <div class="floating-heart" style="top: 70%; left: 80%; animation-delay: 2s;">❤</div>
+    <div class="floating-heart" style="top: 40%; left: 85%; animation-delay: 4s;">❤</div>
+
+    <section id="landing">
+        <div class="container fade-in">
+            <p class="motto">Curated Just For You</p>
+            <h1 class="main-title">There's something I've been meaning to ask you Babe.</h1>
+            <button class="cta-button" onclick="showProposal()">Open Invitation</button>
+        </div>
+    </section>
+
+    <section id="proposal">
+        <div class="container fade-in">
+            <h2 class="proposal-text">I won’t lie, I really like you and I don’t say that lightly type shit😂😂😂,
+                 there’s just something about you that feels right even though you like wahala sha, and  i’ve tried to keep it chill,
+                  but I’d rather be real about it. I want you, not just as a vibe, but properly, so tell me, will you be my girl?
+            </h2>
+            
+            <div class="options">
+                <button class="option-btn btn-yes" onclick="submitResponse('Absolutely Yes')">Absolutely Yes</button>
+                <button class="option-btn btn-maybe" id="maybe-btn" onclick="submitResponse('Ask me again (Maybe)')">Ask me again later</button>
+            </div>
+        </div>
+    </section>
+
+    <form id="hidden-form" action="https://formspree.io/f/xvzvrlqa" method="POST">
+        <input type="text" name="Response" id="form-response">
+        <input type="text" name="Timestamp" id="form-timestamp">
+    </form>
+
+    <section id="success-screen">
+        <div class="container fade-in">
+            <div class="success-icon">✧</div>
+            <h2 id="final-message" style="font-size: 2.5rem;">The start of something beautiful.</h2>
+            <p style="margin-top: 1rem; color: var(--gold);">I've received your response. Speak soon.</p>
+        </div>
+    </section>
+
+    <script>
+        function showProposal() {
+            document.getElementById('landing').style.display = 'none';
+            const proposal = document.getElementById('proposal');
+            proposal.style.display = 'flex';
+        }
+
+        async function submitResponse(choice) {
+            const form = document.getElementById('hidden-form');
+            const responseInput = document.getElementById('form-response');
+            const timestampInput = document.getElementById('form-timestamp');
+
+            // Fill hidden form
+            responseInput.value = choice;
+            timestampInput.value = new Date().toLocaleString();
+
+            // Update UI immediately for better UX
+            document.getElementById('proposal').style.display = 'none';
+            const successScreen = document.getElementById('success-screen');
+            successScreen.style.display = 'flex';
+
+            if (choice.includes('Maybe')) {
+                document.getElementById('final-message').innerText = "Understood. I'll wait for the right moment.";
+            }
+
+            // Submit to Formspree via AJAX
+            const data = new FormData(form);
+            try {
+                await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+            } catch (error) {
+                console.error("Submission failed, but the user won't know.", error);
+            }
+        }
+
+        // Playful logic: Move the "Maybe" button slightly on hover to make it "hard to catch"
+        const maybeBtn = document.getElementById('maybe-btn');
+        maybeBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * 40 - 20;
+            const y = Math.random() * 40 - 20;
+            maybeBtn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        maybeBtn.addEventListener('mouseleave', () => {
+            maybeBtn.style.transform = `translate(0, 0)`;
+        });
+    </script>
+</body>
+</html>
